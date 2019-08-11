@@ -1,0 +1,19 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--注意上面，引入了c和p命名空间-->
+    <!-- 注入引用(指定注入到第几个参数中) -->
+    <bean id="user1" class="com.waston.xml.pojo.User" c:_0="23" c:_1="wastonzhang" c:_2="shenzhen"/>
+
+    <!--p命名空间，参数注入-->
+    <bean id="user2" class="com.waston.xml.pojo.User" p:id="8" p:name="sili" p:address="hangzhou"/>
+
+    <!--构造器注入对象-->
+    <bean id="worker1" class="com.waston.xml.pojo.Work" p:user-ref="user1"/>
+    <!--属性值注入对象-->
+    <bean id="worker2" class="com.waston.xml.pojo.Work" c:_0-ref="user2"/>
+
+</beans>

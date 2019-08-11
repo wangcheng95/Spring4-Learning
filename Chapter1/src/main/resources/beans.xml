@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--定义bean的id，ref引用的就是id-->
+    <bean id="student"  class="com.waston.ioc.Student" ></bean>
+
+    <bean id="teacher" class="com.waston.ioc.Teacher"> </bean>
+
+    <!--构造器注入依赖的对象-->
+    <bean id="work" class="com.waston.ioc.Work">
+        <constructor-arg ref="student"/>
+    </bean>
+</beans>

@@ -1,0 +1,30 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="customerService" class="com.waston.aop.service.CustomerService">
+        <property name="name" value="waston" />
+        <property name="email" value="example@qq.com" />
+    </bean>
+
+
+    <!--将切面声明成bean-->
+    <bean id="customerServiceAspect" class="com.waston.aop.aspect.CustomerServiceAspect">
+    </bean>
+
+    <!--定义切面-->
+    <aop:config>
+        <aop:aspect ref="customerServiceAspect">
+            <!--printEmail()执行前执行logBeforeMethod()-->
+            <aop:before pointcut="execution(* com.waston.aop.service.CustomerService.printEmail(..))" method="logBeforeMethod"/>
+            <!--printEmail()执行前执行logAfterMethod()-->
+            <aop:after pointcut="execution(* com.waston.aop.service.CustomerService.printName(..))" method="logAfterMethod"/>
+            <!--throwException()执行前执行logException()-->
+            <aop:after-throwing pointcut="execution(* com.waston.aop.service.CustomerService.throwException(..))" method="logException"/>
+        </aop:aspect>
+    </aop:config>
+</beans>
